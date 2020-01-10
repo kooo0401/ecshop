@@ -143,3 +143,9 @@ header {
   background-image: none !important;
   background: none !important;
 }
+
+/****Signup****/
+.error_list li {
+  color: red;
+  font-weight: bold;
+}
