@@ -15,6 +15,7 @@
   {% endif %}
 {% endblock %}
 {% block content %}
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/category.css' %}"> -->
   {% if category %}
     <div>
       <div>
@@ -32,7 +33,7 @@
     <p>{{category.description}}</p>
   </div>
   {% else %}
-  <img src="{% static 'img/top.jpg' %}" alt="Our Products Collection">
+  <img class="topimg" src="{% static 'img/top.jpg' %}" alt="Our Products Collection">
 </div>
 <br>
 <div>
@@ -45,7 +46,7 @@
     {% for product in products %}
     <div>
       <div>
-        <a href=""><img src="{{product.image.url}}" alt="{{product.name}}"></a>
+        <a href="{{product.get_url}}"><img src="{{product.image.url}}" alt="{{product.name}}"></a>
         <div>
           <h4>{{product.name}}</h4>
           <p>£{{product.price}}</p>
