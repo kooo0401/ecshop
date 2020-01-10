@@ -109,8 +109,24 @@
                   </tbody>
                 </table>
                 <div class="mx-auto">
-                    <a href="{% url 'shop:allProdCat' %}" class="btn-secondary btn-block my_custom_button">Continue Shopping</a>
-                </div>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                         <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="{{ data_key }}"
+                        data-amount="{{ data_total }}"
+                        data-name="Perfect Cushion Shop"
+                        data-description=" description "
+                        data-image="{% static 'img/banner.jpg' %}"
+                        data-locale="auto"
+                        data-currency="jpy"
+                        data-shipping-address="true"
+                        data-bulling-address="true"
+                        data-zip-code="true">
+                        </script>
+                        </form>
+                        <a href="{% url 'shop:allProdCat' %}" class="btn-secondary btn-block my_custom_button">Continue Shopping</a>
+                    </div>
             </div>
         </div>
         <br>
