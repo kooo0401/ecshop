@@ -60,11 +60,11 @@
                                         <i class="fas fa-plus-circle custom_icon"></i>
                                     </a>
                                     &nbsp;
-                                    <a href="" class="custom_a">
+                                    <a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a">
                                         <i class="fas fa-minus-circle custom_icon"></i>
                                     </a>
                                     &nbsp;
-                                    <a herf="" class="custom_item">
+                                    <a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_item">
                                         <i class="far fa-trash-alt"></i> 
                                     </a>
                                 </td>

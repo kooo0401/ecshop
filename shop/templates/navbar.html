@@ -5,23 +5,23 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
+        <li class="nav-item dropdown {% if 'shop' in request.path %}active{% endif %}">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+          Shop
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="{% url 'shop:allProdCat' %}">All Products</a>
+            {% for cat in links %}
+            <a class="dropdown-item" href="{{cat.get_url}}">{{cat.name}}</a>
+            {% endfor %}
         </div>
       </li>
+      {% if item_count > 0 %}
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
+          <a class="nav-link" href="{% url 'cart:cart_detail' %}"><i class="fas fa-shopping-cart">({{item_count}})</i></a>
+    </li>
+    {% endif %}
+
     </ul>
     <form class="form-inline my-2 my-lg-0" action="{% url 'search_app:searchResult' %}" method="get">
         {% csrf_token %}
@@ -29,13 +29,4 @@
       <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
     </form>
   </div>
-</nav>
-<nav>
-  <ul>
-      <li><a href="{% url 'shop:allProdCat' %}">All Products</a></li>
-      {% for cat in links %}
-          <li><a href="{{cat.get_url}}">{{cat.name}}</a></li>
-      {% endfor %}
-    <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
-  </ul>
 </nav>
