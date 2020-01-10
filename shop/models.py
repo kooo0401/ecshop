@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from imagekit.models import ImageSpecField, ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 
 class Category(models.Model):
@@ -31,6 +33,30 @@ class Product(models.Model):
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    # big = ImageSpecField(source="origin",
+    # processors=[ResizeToFill(1280, 1024)],
+    # format='JPEG'
+    # )
+
+    # thumbnail = ImageSpecField(source='origin',
+    #     processors=[ResizeToFill(250,250)],
+    #     format="JPEG",
+    #     options={'quality': 60}
+    # )
+
+    # middle = ImageSpecField(source='origin',
+    #     processors=[ResizeToFill(600, 400)],
+    #     format="JPEG",
+    #     options={'quality': 75}
+    # )
+
+    # small = ImageSpecField(source='origin',
+    #     processors=[ResizeToFill(75,75)],
+    #     format="JPEG",
+    #     options={'quality': 50}
+    # )
+
 
     class Meta:
         ordering = ('name',)
