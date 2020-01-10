@@ -1,6 +1,11 @@
 body{
   font-family: 'Roboto', sans-serif;
 }
+.ProductImg {
+  height: 400px;
+  width: 400px;
+}
+
 /****Header****/
 header {
   text-align: center;
@@ -16,7 +21,6 @@ header {
   font-size: 14px;
   text-transform: uppercase;
 }
-
 .dropdown-itme{
   font-size: 14px;
   letter-spacing: .2em;
@@ -28,7 +32,6 @@ header {
   background-color: #f8f9fa;
   height: 60px;
 }
-
 .my_footer p {
   padding-top: 20px;
   font-size: 14px;
@@ -43,10 +46,9 @@ header {
   font-size: 12px;
   text-decoration: none;
 }
-
 .my_image{
   width: 100%;
-  height: auto;
+  height: 300px;
 }
 .my_title{
   font-size: 16px;
