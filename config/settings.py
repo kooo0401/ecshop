@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'shop',
     'search_app',
     'cart',
+    'stripe',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,9 @@ STATICFILES_DIRS = (
     )
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
+
+### Stripe Settings###
+# 公開キー
+STRIPE_PUBLISHABLE_KEY = 'pk_test_ryXwhPQRns6poxRR1jrsRggZ00ReexrVjH'
+# シークレットキー
+STRIPE_SECRET_KEY = 'sk_test_RuO9gX7u7XBi5r4F836G5shm00TPDk0ljs'
