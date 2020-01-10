@@ -11,5 +11,7 @@ services:
             - .:/app
         ports:
             - 7000:7000
+        env_file:
+            - .env
         depends_on:
             - db

@@ -11,19 +11,29 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+# 環境変数をdjango-environで定義(docker環境なのでcompose.ymlにも記載要)
+import environ
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# settings.pyの位置を起点として２つ上の親ディレクトリを参照
+BASE_DIR = environ.Path(__file__) - 2
+
+env = environ.Env()
+
+# 環境変数でDJANGO_READ_ENV_FILEをTrueにしておくと.envを読む
+READ_ENV_FILE = env.bool('DJANGO_READ_ENV_FILE', default=False)
+if READ_ENV_FILE:
+    env_file = str(BASE_DIR.path('.env'))
+    env.read_env(env_file)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 't=ozokhrmah69q(-b6d@9xk2r!@4b@@zd&trki^511s!4*p#(%'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -83,15 +93,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-	'USER': 'postgres',
-	'HOST': 'db',
-	'PORT': '5432',
-    }
+    'default': env.db()
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -139,8 +142,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 
 ### Stripe Settings###
 # 公開キー
-STRIPE_PUBLISHABLE_KEY = 'pk_test_ryXwhPQRns6poxRR1jrsRggZ00ReexrVjH'
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
 # シークレットキー
-STRIPE_SECRET_KEY = 'sk_test_RuO9gX7u7XBi5r4F836G5shm00TPDk0ljs'
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

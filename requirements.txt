@@ -5,3 +5,4 @@ Pillow
 django-imagekit
 stripe
 django-crispy-forms
+django-environ

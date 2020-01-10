@@ -1,5 +1,7 @@
 FROM python:3.8
-# バッファにデータを保持しない
+# Pythonがpyc filesとdiscへ書き込むことを防ぐ
+ENV PYTHONDONTWRITEBYTECODE 1
+# Pythonが標準入出力をバッファリングすることを防ぐ
 ENV PYTHONUNBUFFERED 1
 # コンテナ内にディレクトリ作成
 RUN mkdir /app
