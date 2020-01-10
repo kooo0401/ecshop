@@ -1,6 +1,19 @@
 body{
   font-family: 'Roboto', sans-serif;
 }
+/****Header****/
+header {
+  text-align: center;
+}
+.toplogo {
+  width: 200px;
+  height: 200px;
+}
+
+.topimg {
+  width: 1200px;
+  height: 300px;
+}
 
 /****Navbar****/
 .nav-item{
