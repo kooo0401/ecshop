@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
 from .models import Category, Product
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.contrib.auth.models import Group, User
@@ -9,8 +8,7 @@ from django.contrib.auth import login, authenticate, logout
 
 
 def index(request):
-    text_var = 'This is my first django app web page.'
-    return HttpResponse(text_var)
+    return redirect('/shop')
 
 
 def signupView(request):
