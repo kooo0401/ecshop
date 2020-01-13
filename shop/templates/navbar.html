@@ -7,10 +7,10 @@
     <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown {% if 'shop' in request.path %}active{% endif %}">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Shop
+          商品
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{% url 'shop:allProdCat' %}">All Products</a>
+            <a class="dropdown-item" href="{% url 'shop:allProdCat' %}">全ての商品</a>
             {% for cat in links %}
             <a class="dropdown-item" href="{{cat.get_url}}">{{cat.name}}</a>
             {% endfor %}
@@ -25,7 +25,7 @@
     </ul>
     <form class="form-inline my-2 my-lg-0" action="{% url 'search_app:searchResult' %}" method="get">
         {% csrf_token %}
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+      <input class="form-control mr-sm-2" type="search" placeholder="検索" aria-label="Search" name="q">
       <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
     </form>
   </div>
