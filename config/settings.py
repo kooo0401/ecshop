@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Templateで3桁区切りで金額表示
+    'django.contrib.humanize',
     'shop',
     'search_app',
     'cart',
@@ -147,3 +149,6 @@ STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# @login_requiredデコレータを使用したリダイレクト先を定義
+LOGIN_URL = 'signin'

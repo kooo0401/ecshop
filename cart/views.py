@@ -6,14 +6,17 @@ from django.core.exceptions import ObjectDoesNotExist
 import stripe
 from django.conf import settings
 from order.models import Order, OrderItem
+from django.contrib.auth.decorators import login_required
 
 
+@login_required()
 def _cart_id(request):
     cart = request.session.session_key
     if not cart:
         cart = request.session.create()
     return cart
 
+@login_required()
 def add_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     try:
@@ -37,6 +40,7 @@ def add_cart(request, product_id):
         cart_item.save()
     return redirect('cart:cart_detail')
 
+@login_required()
 def cart_detail(request, total=0, counter=0, cart_items = None):
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
@@ -49,7 +53,7 @@ def cart_detail(request, total=0, counter=0, cart_items = None):
 
     stripe.api_key = settings.STRIPE_SECRET_KEY
     stripe_total = int(total * 100)
-    description = 'Perfect Cushion Shop - New Order'
+    description = "Hori's Shop - New Order"
     data_key = settings.STRIPE_PUBLISHABLE_KEY
     if request.method == 'POST':
         try:
@@ -117,6 +121,7 @@ def cart_detail(request, total=0, counter=0, cart_items = None):
 
     return render(request, 'cart.html', dict(cart_items = cart_items, total = total, counter = counter, data_key = data_key, stripe_total = stripe_total, description = description))
 
+@login_required()
 def cart_remove(request, product_id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=product_id)
@@ -128,6 +133,7 @@ def cart_remove(request, product_id):
         cart_item.delete()
     return redirect('cart:cart_detail')
 
+@login_required()
 def full_remove(request, product_id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=product_id)

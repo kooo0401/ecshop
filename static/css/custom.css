@@ -1,6 +1,9 @@
 body{
   font-family: 'Roboto', sans-serif;
 }
+ul{
+  padding-inline-start: 0px;
+}
 .ProductImg {
   height: 400px;
   width: 400px;
@@ -13,6 +16,12 @@ header {
 .toplogo {
   width: 200px;
   height: 200px;
+}
+
+/****TopNavbar****/
+.toppage_link {
+  display: block;
+  float: left;
 }
 
 /****Navbar****/
@@ -48,7 +57,7 @@ header {
 }
 .my_image{
   width: 100%;
-  height: 300px;
+  height: 500px;
 }
 .my_title{
   font-size: 16px;
@@ -81,15 +90,11 @@ header {
   font-size: 12px;
   text-decoration: none;
 }
-.my_prod_title{
-  font-size: 16px;
-  text-transform: uppercase;
-  letter-spacing: .2em;
-  padding-top: 15px;
-  padding-bottom: 10px;
-}
 .my_prod_text{
   padding-right: 20px;
+}
+.text-width {
+  width: 135px;
 }
 
 /****Search Page****/
@@ -119,8 +124,13 @@ header {
   text-decoration: none;
   color: #868e96!important;
 }
-.my_custom_button {
-  margin-top: 5px;
+.other-product {
+  display: inline-block;
+  padding: 0.5em 1em;
+  margin: 5px 0 0 0;
+  background: #868e96;
+  color: #FFF;
+  border-radius: 3px;
 }
 
 /****Stripe Button****/
@@ -159,7 +169,7 @@ header {
   line-height: 50px;
 }
 .my_custom_menu {
-  text-align: right !important;
+  text-align: right;
 }
 .my_custom_menu ul li {
   list-style: none;
@@ -177,4 +187,20 @@ header {
   text-transform: uppercase;
   letter-spacing: .2em;
   font-size: 12px;
+}
+
+.order_history_button {
+  display: inline-block;
+  padding: 0.5em 1em;
+  background: #668ad8;/*ボタン色*/
+  color: #FFF;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+}
+
+.order_history_button:active {
+  /*ボタンを押したとき*/
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
 }

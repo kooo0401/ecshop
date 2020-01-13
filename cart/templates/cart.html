@@ -1,17 +1,18 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static %}
 {% block metadescription %}
-    This is the shopping cart page.. Proced to review your items and place the order.
+    ショッピングカートのページです。商品の確認と注文の手続きに進みます。
 {% endblock %}
 {% block title %}
-    Cart - Perfect Cushion Store
+    Cart - Store
 {% endblock %}
 {% block content %}
+{% load humanize %}
     {% if not cart_items %}
         <div>
           <div class="text-center">
             <br>
-            <h1 class="text center my_title">Your shopping cart is empty</h1>
+            <h1 class="text center my_title">お客様のショッピングカートに商品はありません</h1>
             <br>
             <p class="text-center">
                 Please click <a href="{% url 'shop:allProdCat' %}">here</a> to continue shopping.
@@ -23,7 +24,7 @@
             <div class="text-center">
                 <br>
                 <h1 class="text-center my_title">
-                    Your shopping cart
+                    ショッピングカート
                 </h1>
             </div>
             <br>
@@ -34,7 +35,7 @@
                     <thead class="my_custom_thead">
                         <tr>
                             <th colspan="5">
-                                Your items
+                                カートリスト
                             </th>
                         </tr>
                     </thead> 
@@ -42,17 +43,17 @@
                         {% for cart_item in cart_items %}
                         <tr>
                             <td><a href="cart_item.product.get_absolute_url"><img src="{{cart_item.product.image.url}}" alt="" class="float-left rounded custom_image"></a></td>
-                            <td class="text-left">
-                                {{cart_item.product.name}}
+                            <td class="text-left text-width">
+                                {{ cart_item.product.name }}
                                 <br>
-                                SKU: {{cart_item.product.id}}
+                                数量: {{ cart_item.product.id }}
                                 <br>
-                                Unit Price: £{{cart_item.product.price}}
+                                単価: ¥{{ cart_item.product.price| floatformat| intcomma }}
                                 <br>
-                                Qty: {{cart_item.quantity}} x £{{cart_item.product.price}}
+                                個数: {{ cart_item.quantity }} x ¥{{ cart_item.product.price| floatformat| intcomma }}
                             </td>
                             <td>
-                                £{{cart_item.sub_total}}
+                                合計: ¥{{ cart_item.sub_total| floatformat| intcomma }}
                             </td>
                             {% if cart_item.quantity < cart_item.product.stock %}
                                 <td>
@@ -91,19 +92,19 @@
                   <thead class="my_custom_thead">
                     <tr>
                         <th>
-                            Checkout
+                            注文へ進む
                         </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                         <td>
-                            Please review your shopping cart item before proceeding with the order payment.
+                            注文の支払いに進む前に、ショッピングカートのアイテムを確認してください。
                         </td>
                     </tr>
                     <tr>
                         <td class="text-left">
-                            Your total is: <strong>£{{ total }}</strong>
+                            小計: <strong>¥{{ total| floatformat| intcomma }}</strong>
                         </td>
                     </tr>
                   </tbody>
@@ -115,7 +116,7 @@
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                         data-key="{{ data_key }}"
                         data-amount="{{ data_total }}"
-                        data-name="Perfect Cushion Shop"
+                        data-name="Hori's Shop"
                         data-description=" description "
                         data-image="{% static 'img/banner.jpg' %}"
                         data-locale="auto"
@@ -125,7 +126,7 @@
                         data-zip-code="true">
                         </script>
                         </form>
-                        <a href="{% url 'shop:allProdCat' %}" class="btn-secondary btn-block my_custom_button">Continue Shopping</a>
+                        <a href="{% url 'shop:allProdCat' %}" class="other-product">他の商品を探す</a>
                     </div>
             </div>
         </div>

@@ -1,25 +1,26 @@
 <div class="container">
   <div class="my_custom_menu">
       <ul>
+        <li class="toppage_link"><a href="{% url 'shop:allProdCat' %}">トップページ <i class="fas fa-undo-alt"></i></a></li class="toppage_link">
         {% if request.user.is_authenticated and request.user.first_name %}
         <li>
           <!-- Welcome, {{ request.user.first_name }}<i class="fas fa-user-circle"></i> -->
-          Welcome, <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ request.user.first_name }}<i class="fas fa-user-circle"></i>
+          ようこそ, <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ request.user.first_name }}さん<i class="fas fa-user-circle"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
-            <a href="{% url 'order:order_history' %}" class="dropdown-item">Order History</a>
+            <a href="{% url 'order:order_history' %}" class="dropdown-item">注文履歴</a>
           </div>
         </li>
         <li>
-            <a href="{% url 'signout' %}">Sign Out <i class="fas fa-sign-out-alt"></i></a>
+            <a href="{% url 'signout' %}">ログアウト <i class="fas fa-sign-out-alt"></i></a>
         </li>
         {% else %}
         <li>
-            <a href="{% url 'signup' %}">Sign Up <i class="fas fa-user-plus"></i></a>
+            <a href="{% url 'signup' %}">新規登録 <i class="fas fa-user-plus"></i></a>
         </li>
         <li>
-            <a href="{% url 'signin' %}">Sign In <i class="fas fa-sign-in-alt"></i></a>
+            <a href="{% url 'signin' %}">ログイン <i class="fas fa-sign-in-alt"></i></a>
         </li>
         {% endif %}
       </ul> 

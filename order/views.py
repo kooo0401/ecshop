@@ -3,6 +3,7 @@ from .models import Order, OrderItem
 from django.contrib.auth.decorators import login_required
 
 
+@login_required()
 def thanks(request, order_id):
     if order_id:
         customer_order = get_object_or_404(Order, id=order_id)

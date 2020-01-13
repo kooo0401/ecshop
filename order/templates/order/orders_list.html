@@ -1,22 +1,23 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static %}
 {% block title %}
-  Order History - Book Store
+  Order History - Hori's Store
 {% endblock %}
 {% block content %}
+{% load humanize %}
 <div>
   <div class="text-center">
     <br>
-    <h1 class="text-center my_title">Order History</h1>
+    <h1 class="text-center my_title">注文履歴</h1>
     <br>
     {% if order_details %}
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Order Number</th>
-          <th>Order Date</th>
-          <th>Total Amount</th>
-          <th>Action</th>
+          <th>注文番号</th>
+          <th>注文日</th>
+          <th>合計金額</th>
+          <th>状態</th>
         </tr>
       </thead>
       <tbody>
@@ -24,9 +25,9 @@
         <tr>
           <td>{{ order.id }}</td>
           <td>{{ order.created|date:"d M Y" }}</td>
-          <td>{{ order.total }}</td>
-          <td><i class="fas fa-check"></i>&nbsp;Complete</td>
-          <td><a href="{% url 'order:order_detail' order.id  %}">View order</a></td>
+          <td>¥{{ order.total| floatformat| intcomma }}</td>
+          <td><i class="fas fa-check"></i>&nbsp;完了</td>
+          <td><a href="{% url 'order:order_detail' order.id  %}">明細書を発行</a></td>
         </tr>
         {% endfor %}
       </tbody>

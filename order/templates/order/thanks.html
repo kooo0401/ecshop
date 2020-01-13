@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static %}
 {% block title %}
-    Thanks - Perfect Cushion Store
+    Thanks - Hori's Store
 {% endblock %}
 {% block content %}
 <div>
@@ -9,16 +9,16 @@
     <br>
     <br>
     <h1 class="text-center my_title">
-        Thanks for placing your order
+        ご注文ありがとうございます
     </h1>
     <br>
     <br>
-    <p>Your order number is: <b>{{ customer_order.id }}</b></p>
+    <p>注文番号: <b>{{ customer_order.id }}</b></p>
     <br>
     <p>
-        We have received your order and will begin processing right away. For your recodes as email confirmation has been sent to you.
-        It contains details of the items you purchased.
+      ご注文を承りました。請求書が必要な場合は、ボタンを押してください。
     </p>
+    <a href="{% url 'order:order_history' %}" class="order_history_button"">注文履歴</a>
   </div>
 </div>
 <br>

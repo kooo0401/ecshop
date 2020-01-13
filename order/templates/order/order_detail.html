@@ -1,24 +1,25 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static %}
 {% block title %}
-    Order Details - Perfect Cushion Store
+    Order Details - Hori's Store
 {% endblock %}
 {% block content %}
+{% load humanize %}
 <div>
   <div class="text-center">
     <br>
-    <h1 class="text-center">Order Details</h1>
+    <h1 class="text-center">ご注文明細</h1>
     <br>
     <table class="table table-bordered">
       <tr>
           <td class="text-left" colspan="2">
-              <b>Order: </b>#{{ order.id }}<br>
-              <b>Dete: </b>{{ order.created|date:"d M Y" }}<br>
-              <b>Order Total: </b>{{ order.total }}
-              <b>Order Status: </b><i class="fas fa-check"></i> Complete.
+              <b>注文番号: </b>　#{{ order.id }}<br>
+              <b>注文日付: </b>　{{ order.created|date:"Y年 m月 d日" }}<br>
+              <b>合計金額: </b>　¥{{ order.total| floatformat| intcomma }}<br>
+              <b>状態: </b>　　　<i class="fas fa-check"></i>完了
           </td>
           <td class="text-left" colspan="2">
-              <b>Billing Address: </b>
+              <b>請求先住所: </b>
               {{ order.billingName }}<br>
               {{ order.billingAddress1 }}<br>
               {{ order.billingCity }}<br>
@@ -27,40 +28,40 @@
           </td>
       </tr>
       <tr>
-          <td><b>Product Description</b></td>
-          <td><b>Qty</b></td>
-          <td><b>Unit Price</b></td>
-          <td><b>Sub-Total</b></td>
+          <td><b>商品説明</b></td>
+          <td><b>数量</b></td>
+          <td><b>単価</b></td>
+          <td><b>合計</b></td>
       </tr>
         {% for item in order_items %}
         <tr>
             <td>{{ item.product }}</td>
             <td>{{ item.quantity }}</td>
-            <td>{{ item.price }}</td>
-            <td>{{ item.sub_total }}</td>
+            <td>¥{{ item.price| floatformat| intcomma }}</td>
+            <td>¥{{ item.sub_total| floatformat| intcomma }}</td>
         </tr>
         {% endfor %}
         <tr>
-            <td class="text-right" colspan="3"><b>Total</b></td>
-            <td>£{{ order.total }}</td>
+            <td class="text-right" colspan="3"><b>小計</b></td>
+            <td>¥{{ order.total| floatformat| intcomma }}</td>
         </tr>
         <tr>
-            <td class="text-right" colspan="3"><b>Total Paid</b></td>
-            <td>£{{ order.total }}</td>
+            <td class="text-right" colspan="3"><b>ご請求金額</b></td>
+            <td>¥{{ order.total| floatformat| intcomma }}</td>
         </tr>
         <tr>
             <td class="text-left" colspan="2">
-                <b>Shipping Address: </b><br>
-                {{ order.shippingName }}<br>
-                {{ order.shippingName }}<br>
-                {{ order.shippingAddress1 }} <br>
-                {{ order.shippingCity }}<br>
-                {{ order.shippingPostcode }}<br>
-                {{ order.shippingCountry }}<br>
+                <b>お届け先住所: </b><br>
+                <b>お名前: </b>　　{{ order.shippingName }}<br>
+                <b>国: </b>　　　　{{ order.shippingCountry }}<br>
+
+                <b>郵便番号: </b>　{{ order.shippingPostcode }}<br>
+                <b>都道府県: </b>　{{ order.shippingCity }}<br>
+                <b>市区町村: </b>　{{ order.shippingAddress1 }} <br>
             </td>
             <td class="text-left" colspan="2">
-                <b>Payment Details: </b><br>
-                The order #{{ order.id }} has been paid successfully via Stripe.
+                <b>お支払い詳細: </b><br>
+                注文番号 #{{ order.id }} はStripe決済を介して正常に支払われました。
             </td>
         </tr>
     </table>
