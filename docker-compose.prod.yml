@@ -1,0 +1,64 @@
+version: '3'
+
+services:
+    # サービス名は自由に設定
+    webserver:
+        build: .
+            # 読み込むファイル名が`Dockerfile`ではない場合contextに相対パス、dockerfileにファイル名を記載
+            # context: .
+            # dockerfile: Dockerfile.prod
+        # サービス起動後に入力されるコマンドを設定
+        command: gunicorn config.wsgi:application --bind 0.0.0.0:7000
+
+        # データを永続化させる場合の設定。`host:container`でパスを記載
+        volumes:
+            - static_volume:/app
+        # 開放するポートを指定。`host:container`でポートを記載
+        expose:
+            - 7000
+        # 環境変数を指定
+        env_file: .env.prod
+        # 接続するサービスを指定
+        depends_on:
+            - db
+
+    db:
+        # 公式からイメージをpull
+        image: postgres:12.0-alpine
+        # データベースの永続化
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        env_file: .env.prod
+        expose:
+            - 5432
+
+    nginx:
+        build: ./nginx
+        volumes:
+            - static_volume:/app/staticfiles
+        ports:
+            - 7000:7000
+            # 左にデフォルト80を記載することで今回の場合"localhost"
+        depends_on:
+            - webserver
+
+    # https-portal:
+    #     image: steveltn/https-portal:1
+    #     ports:
+    #         - 80:80
+    #         - 443:443
+    #     links:
+    #         - nginx
+    #     environment:
+    #         DOMAINS: koo0401.ml -> http://nginx:8000
+    #         STAGE: production
+    #     depends_on:
+    #         - nginx
+    #     restart: always
+    #     volumes:
+    #         - ./org-chimata-ssl-certs:/var/lib/https-portal
+
+# トップレベルに書く「名前付きvolumes」は複数サービスから参照できる
+volumes:
+    postgres_data:
+    static_volume:
