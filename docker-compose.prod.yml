@@ -37,26 +37,26 @@ services:
         volumes:
             - static_volume:/app/staticfiles
         ports:
-            - 80:80
+            - 8000:8000
             # 左にデフォルト80を記載することで今回の場合"localhost"
         depends_on:
             - webserver
 
-    # https-portal:
-    #     image: steveltn/https-portal:1
-    #     ports:
-    #         - 80:80
-    #         - 443:443
-    #     links:
-    #         - nginx
-    #     environment:
-    #         DOMAINS: koo0401.ml -> http://nginx:8000
-    #         STAGE: production
-    #     depends_on:
-    #         - nginx
-    #     restart: always
-    #     volumes:
-    #         - ./org-chimata-ssl-certs:/var/lib/https-portal
+    https-portal:
+        image: steveltn/https-portal:1
+        ports:
+            - 80:80
+            - 443:443
+        links:
+            - nginx
+        environment:
+            DOMAINS: koo0401.ml -> http://nginx:8000
+            STAGE: production
+        depends_on:
+            - nginx
+        restart: always
+        volumes:
+            - ./org-chimata-ssl-certs:/var/lib/https-portal
 
 # トップレベルに書く「名前付きvolumes」は複数サービスから参照できる
 volumes:
