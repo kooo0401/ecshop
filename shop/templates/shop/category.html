@@ -4,17 +4,18 @@
    {% if category %}
         {{ category.description|truncatewords:155 }}
    {% else %}
-        Welcome to the book store where you can buy comfy and awesome books.
+        Welcome to the hori's store where you can buy comfy and awesome.
    {% endif %}
 {% endblock %}
 {% block title %}
    {% if category %}
-        {{ category.name }} - Book Store
+        {{ category.name }} - Hori's Store
    {% else %}
-        Our Book Collection - Book Store
+        Our Collection - Hori's Store
    {% endif %}
 {% endblock %}
 {% block content %}
+<!-- 金額を3桁区切りにする -->
 {% load humanize %}
     {% if category %}
         <div class="row my_row_class">

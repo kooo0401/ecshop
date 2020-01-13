@@ -6,9 +6,10 @@
 {% block title %}
     Search - Hori's Store
 {% endblock %}
-{% block content  %}
+{% block content %}
+{% load humanize %}
     <div>
-        <p class="text-center my_search_text">You have searchd for: <b>"{{ query }}"</b></p>
+        <p class="text-center my_search_text">検索内容: <b>"{{ query }}"</b></p>
     </div>
     <div class="container">
         <div class="row mx-auto">
@@ -18,7 +19,7 @@
                     <a href="{{product.get_url}}"><img class="card-img-top my_image" src="{{product.image.url}}" alt="{{product.name}}"></a>
                     <div class="card-body">
                         <h4>{{product.name}}</h4>
-                        <p>£{{product.price}}</p>
+                        <p>¥{{product.price| floatformat| intcomma}}</p>
                     </div>
                 </div>
             </div>

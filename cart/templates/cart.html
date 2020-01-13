@@ -43,7 +43,7 @@
                         {% for cart_item in cart_items %}
                         <tr>
                             <td><a href="cart_item.product.get_absolute_url"><img src="{{cart_item.product.image.url}}" alt="" class="float-left rounded custom_image"></a></td>
-                            <td class="text-left">
+                            <td class="text-left text-width">
                                 {{ cart_item.product.name }}
                                 <br>
                                 数量: {{ cart_item.product.id }}
@@ -92,7 +92,7 @@
                   <thead class="my_custom_thead">
                     <tr>
                         <th>
-                            購入へ進む
+                            注文へ進む
                         </th>
                     </tr>
                   </thead>
@@ -126,7 +126,7 @@
                         data-zip-code="true">
                         </script>
                         </form>
-                        <a href="{% url 'shop:allProdCat' %}" class="btn-secondary btn-block my_custom_button">他の商品を探す</a>
+                        <a href="{% url 'shop:allProdCat' %}" class="other-product">他の商品を探す</a>
                     </div>
             </div>
         </div>

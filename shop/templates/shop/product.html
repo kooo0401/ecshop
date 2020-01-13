@@ -4,7 +4,7 @@
     {{ product.description|truncatewords:155 }}
 {% endblock %}
 {% block title %}
-{{ product.name }} - Book Store
+{{ product.name }} - Hori's Store
 {% endblock %}
 {% block content %}
 {% load humanize %}
@@ -22,10 +22,9 @@
               </div>
               <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                   <div>
-                      <h1 class="my_prod_title">{{product.name}}</h1>
-                      <p>¥{{product.price| floatformat| intcomma}}</p>
-                      <p class="my_title">商品説明</p>
-                      <p class="text-justify my_prod_text">{{product.description}}</p>
+                      <b>タイトル: </b>　{{ product.name }}<br><br>
+                      <b>価格: </b>　　　¥{{product.price| floatformat| intcomma}}<br><br>
+                      <b>商品説明: </b>　{{product.description}}<br><br>
                       {% if product.stock <= 0 %}
                       <p class="text-justify my_prod_text"><b>在庫切れ</b></p>
                       {% else %}

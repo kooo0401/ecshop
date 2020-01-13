@@ -19,7 +19,7 @@ RUN pip install --upgrade pip \
 # ホストのpipfileをコンテナの作業ディレクトリにコピー
 COPY Pipfile /app/Pipfile
 
-# pipfileからパッケージをインストールしてDjango環境を構築
+# pipfileからパッケージをインストールしてDjango環境を構築(Pipfile.lockは無視)
 RUN pipenv install --system --skip-lock
 
 # ローカルのecshopルートディレクトリをコンテナのapp/配下にコピー
