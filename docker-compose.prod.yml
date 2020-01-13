@@ -17,7 +17,7 @@ services:
         expose:
             - 8000
         # 環境変数を指定
-        env_file: .env.prod
+        env_file: .env
         # 接続するサービスを指定
         depends_on:
             - db
@@ -28,7 +28,7 @@ services:
         # データベースの永続化
         volumes:
             - postgres_data:/var/lib/postgresql/data
-        env_file: .env.prod
+        env_file: .env
         expose:
             - 5432
 
