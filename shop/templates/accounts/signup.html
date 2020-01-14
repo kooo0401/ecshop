@@ -12,15 +12,15 @@
         {% if not form.is_valid %}
         <div class="mx-auto">
           <br>
-          <h1 class="my_title text-center">Create a new Account</h1>
+          <h1 class="my_title text-center">新しいアカウントを作成する</h1>
           <br>
           <div class="col-9 col-md-6 col-lg-5 mx-auto bg-light">
             <br>
-            <p>Enter the following information to create a new account.</p>
+            <p>次の情報を入力して、新しいアカウントを作成します。</p>
             <form method="post">
                 {% csrf_token %}
                 <p>{{ form | crispy }}</p>
-                <button type="submit" class="btn btn-secondary">Register Account</button>
+                <button type="submit" class="btn btn-secondary">登録</button>
             </form>
             <br>
           </div>
@@ -28,19 +28,9 @@
         {% else %}
             <div class="mx-auto">
               <br>
-              <h1 class="my_title text-center">Your account has been successfully created</h1>
+              <h1 class="my_title text-center">アカウントが正常に作成されました</h1>
               <br>
-              <div>
-                  <p>
-                    Dear Customer,
-                    <br>
-                    <br>
-                    Your account has been created and it is ready to use.
-                    <br>
-                    <a href="{% url 'shop:allProdCat' %}">Continue shopping</a> and enjoy the variety of cushions that we have at the hori's store.
-                  </p>
-              </div>
-            </div>
+              <a href="{% url 'shop:allProdCat' %}" class="shopping_continue">ショッピングを続ける</a>
         {% endif %}
     </div>
     <br>

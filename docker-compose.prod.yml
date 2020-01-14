@@ -50,7 +50,7 @@ services:
         links:
             - nginx
         environment:
-            DOMAINS: koo0401.ml -> http://nginx:8000
+            DOMAINS: hori0401.ml -> http://nginx:8000
             STAGE: production
         depends_on:
             - nginx

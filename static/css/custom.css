@@ -159,6 +159,11 @@ header {
   color: red;
   font-weight: bold;
 }
+.shopping_continue {
+  display: block;
+  text-align: center;
+  height: 100px;
+}
 
 /****Signin****/
 .my_custom_div {
