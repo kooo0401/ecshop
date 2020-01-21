@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'cart',
     'stripe',
     'order',
+    # bootstrap4を用いたフォーム作成（SignUp）
     'crispy_forms',
 ]
 
@@ -148,7 +149,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
 # シークレットキー
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
-
+# bootstrap4を用いたフォーム作成
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # @login_requiredデコレータを使用したリダイレクト先を定義

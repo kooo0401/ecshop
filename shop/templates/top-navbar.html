@@ -1,7 +1,7 @@
 <div class="container">
   <div class="my_custom_menu">
       <ul>
-        <li class="toppage_link"><a href="{% url 'shop:allProdCat' %}">トップページ <i class="fas fa-undo-alt"></i></a></li class="toppage_link">
+        <li class="toppage_link"><a href="{% url 'shop:allProdCat' %}">トップページ <i class="fas fa-undo-alt"></i></a></li>
         {% if request.user.is_authenticated and request.user.first_name %}
         <li>
           <!-- Welcome, {{ request.user.first_name }}<i class="fas fa-user-circle"></i> -->

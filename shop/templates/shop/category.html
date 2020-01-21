@@ -34,7 +34,7 @@
         <p class="text-justify">{{category.description}}</p>
     </div>
     {% else %}
-        <img class="my_image my_image_padding" src="{% static 'img/coffee.jpg' %}" alt="Our Products Collection">
+        <img class="my_image_padding" src="{% static 'img/coffee.jpg' %}" alt="Our Products Collection">
     </div>
     <br>
     <div>
@@ -45,7 +45,7 @@
         <div class="row mx-auto">
             {% for product in products.object_list  %}
             <div class="my_bottom_margin col-9 col-sm-12 col-md-4 col-md-12 col-lg-4">
-                <div class="card text-center" style="min-width: 18rem;">
+                <div class="card text-center img-box" style="min-width: 18rem;">
                     <a href="{{product.get_url}}"><img class="card-img-top my_image" src="{{product.image.url}}" alt="{{product.name}}"></a>
                     <div class="card-body">
                         <h4>{{product.name}}</h4>
