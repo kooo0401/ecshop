@@ -103,3 +103,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# 開発環境でアップされる画像
+static/media/category/
+static/media/product/
