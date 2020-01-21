@@ -56,7 +56,7 @@ services:
             - nginx
         restart: always
         volumes:
-            - org-chimata-ssl-certs:/var/lib/https-portal
+            - ./org-chimata-ssl-certs:/var/lib/https-portal
 
 # トップレベルに書く「名前付きvolumes」は複数サービスから参照できる
 volumes:
